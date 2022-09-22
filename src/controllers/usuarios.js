@@ -1,8 +1,17 @@
-const pool = require("../database/conexao");
+const { pool, knex } = require("../database/conexao");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const senhaJwT = require('../segredo');
 
+const listarUsuarios = async (req, res) => {
+    try {
+        const usuario = knex('usuarios');
+        return res.json(usuario);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: 'Erro interno do servidor' })
+    }
+}
 const cadastrarUsuarios = async (req, res) => {
     const { nome, email, senha } = req.body;
     try {
@@ -67,4 +76,4 @@ const login = async (req, res) => {
 
 
 
-module.exports = { cadastrarUsuarios, login }
+module.exports = { cadastrarUsuarios, login, listarUsuarios }

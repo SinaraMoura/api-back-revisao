@@ -5,8 +5,19 @@ const pool = new Pool({
     host: process.env.HOST,
     port: process.env.PORT_POSTGRES,
     user: process.env.USER,
-    password: process.env.PASSWORD,
+    password: process.env.PASS,
     database: process.env.DATABASE
 })
+const knex = require('knex')({
+    client: 'postgres',
+    connection: {
+        host: process.env.HOST,
+        port: process.env.PORT_POSTGRES,
+        user: process.env.USER,
+        password: process.env.PASS,
+        database: process.env.DATABASE,
+        ssl: { rejectUnauthorized: false }
+    }
+});
 
-module.exports = pool;
+module.exports = { pool, knex };
