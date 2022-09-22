@@ -9,7 +9,7 @@ const pool = new Pool({
     database: process.env.DATABASE
 })
 const knex = require('knex')({
-    client: 'postgres',
+    client: 'pg',
     connection: {
         host: process.env.HOST,
         port: process.env.PORT_POSTGRES,
