@@ -5,7 +5,7 @@ const senhaJwT = require('../segredo');
 
 const listarUsuarios = async (req, res) => {
     try {
-        const usuario = knex('usuarios');
+        const usuario = await knex('usuarios');
         return res.json(usuario);
     } catch (error) {
         console.log(error);
